@@ -9,3 +9,7 @@ This technology stands to enhance safety measures, mitigating the likelihood of 
 
 ## Intro
 This github repo is a place where we collect and share the code in order to get the robot working for University course Robotic Studio 1. The goal is to simulate and control a robot using SLAM and pathplanning techniques to navigate an enviroment and collect sensor data along the way within the enviroment. 
+
+
+## System 
+We are using ROS 1 with gazebo and Ubunutu 1.18.4 LTS on the Turtlebot 3 platform
