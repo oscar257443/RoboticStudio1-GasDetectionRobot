@@ -1,0 +1,33 @@
+/**
+ * @file gas_worldv3.launch
+ *
+ * @brief Launch file for spawning a TurtleBot3 robot model in Gazebo.
+ *
+ * This launch file is responsible for spawning a TurtleBot3 robot model in a Gazebo simulation environment.
+ */
+
+<launch>
+
+  <!-- Define arguments for the turtlebot model -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <!-- Set the turtlebot's initial position -->
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="0.0"/>
+  <arg name="z_pos" default="0.0"/>
+
+  <!-- Include empty_world.launch which is responsible for setting up an empty gazebo world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- Selects the environment gas_worldv3 -->
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/gas_worldv3.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+  <!-- Spawn the turtlebot model in Gazebo -->
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_$(arg model) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+</launch>
