@@ -1,0 +1,32 @@
+Slam and path planning Commands
+
+export TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gezebo gas_worldv3.launch
+
+roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
+
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+
+rosrun map_server map_saver -f ~/map 		//to save map 
+
+CLOSE ALL
+
+export TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gezebo gas_worldv3.launch
+
+roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
+
+//set initial pose using 2D Pose estimate button
+
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+
+//move around to get good data
+
+//close the telop with CTRL + C
+
+//Set Nav Goal using 2D Nav Goal button
+
+//Can add obstacles with gazebo and local map should update global map
+
+
+
